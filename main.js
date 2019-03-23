@@ -1,27 +1,54 @@
-const startBtn = document.getElementById('startBtn');
+const startBtn = document.getElementById('start-btn');
+const sortBtn = document.getElementById('sort-btn');
+const studentForm = document.getElementById('student-form');
+const studentName = document.getElementById('student-name');
 
 const printToDom = (divId, textToPrint) => {
   const selectedDiv = document.getElementById(divId);
-  selectedDiv.innerHTML = textToPrint;
+  selectedDiv.innerHTML += textToPrint;
 };
 
-const openForm = () => {
+let formVisibility = false; // toggle for the form
+const formShowHide = () => {
+  if (formVisibility === false) {
+    studentForm.style.visibility = 'visible';
+    formVisibility = true;
+  } else {
+    studentForm.style.visibility = 'hidden';
+    formVisibility = false;
+  };
+};
+
+const randomHouse = () => {
+  let house = [
+    "Gryffindor",
+    "Slytherin",
+    "Ravenclaw",
+    "Hufflepuff"
+  ]
+  let selectedHouse = house[Math.floor(Math.random()*house.length)];
+  return selectedHouse;
+};
+
+const addStudent = () => {
   let domString = '';
-
-  domString += `<form>`;
-  domString += `<h2>Enter First Year's Name</h2>`;
-  domString += `  <div class="form-group" id="student-form>`;
-  domString += `    <label for="studentName">Student:</label>`;
-  domString += `    <input type="text" class="form-control" placeholder="Seamus Finnigan" id="studentName"> `;
+  let selectedHouse = randomHouse();
+  
+  domString += `<div class="card text-center" style="width: 18rem;" id="student-card">`;
+  domString += `  <div class="card-body">`;
+  domString += `    <h2>${studentName.value}</h2>`;
+  domString += `    <p class="card-text">${selectedHouse}</p>`;
+  domString += `    <button class="btn btn-primary">Go somewhere</button>`;
   domString += `  </div>`;
-  domString += `  <button type="submit" class="btn btn-primary">Sort!</button>`;
-  domString += `</form>`;
+  domString += `</div>`;
 
-  printToDom('student-form', domString);
-};
+  printToDom('student-cards', domString);
+;}
 
 const init = () => {
-  startBtn.addEventListener('click', openForm);
+  startBtn.addEventListener('click', formShowHide);
+  sortBtn.addEventListener('click', addStudent);
+  randomHouse();
 }
 
 init();
