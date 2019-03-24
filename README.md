@@ -2,7 +2,7 @@
 One-page locally hosted site to work on writing/working tickets using Github Projects, styling with Bootstrap 4, and manipulating arrays.
 
 ## Screenshots
-![image of sorting hat website](https://raw.githubusercontent.com/bobbybaxter/sorting-hat/master/images/sorting-hat-screenshot.png)
+![image of sorting hat website](https://raw.githubusercontent.com/bobbybaxter/sorting-hat/master/img/sorting-hat-screenshot.png)
 
 ## Getting Started
 Clone the repo:
