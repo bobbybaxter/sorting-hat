@@ -36,6 +36,7 @@ const addStudent = () => {
     house: selectedHouse,
     id: uniqueId
   };
+  studentName.value = '';
   idCounter++;
   classroom.unshift(student);
   classroomBuilder(classroom);
@@ -58,11 +59,11 @@ const expelStudent = (e) => {
 const classroomBuilder = (classroomArray) => {
   let domString = '';
   classroomArray.forEach((student) => {
-    domString += `<div class="card text-center" style="width: 18rem;" id="student-card">`;
-    domString += `  <div class="card-body">`;
+    domString += `<div class="card text-center border rounded mt-0 mx-3 mb-4" style="width: 15rem;" id="student-card">`;
+    domString += `  <div class="card-body d-flex flex-column">`;
     domString += `    <h2>${student.name}</h2>`;
     domString += `    <p class="card-text">${student.house}</p>`;
-    domString += `    <button class="btn btn-primary" id="${student.id}">Expel</button>`;
+    domString += `    <button class="btn btn-primary m-auto-top" id="${student.id}">Expel</button>`;
     domString += `  </div>`;
     domString += `</div>`;
   });

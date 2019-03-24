@@ -2,6 +2,6 @@
   visibility: hidden;
 }
 
-a#start-btn {
-  color: white;
+.m-auto-top {
+  margin-top: auto;
 }
