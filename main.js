@@ -2,13 +2,15 @@ const startBtn = document.getElementById('start-btn');
 const sortBtn = document.getElementById('sort-btn');
 const studentForm = document.getElementById('student-form');
 const studentName = document.getElementById('student-name');
+let classroom = [];
+let idCounter = 0;
 
 const printToDom = (divId, textToPrint) => {
   const selectedDiv = document.getElementById(divId);
-  selectedDiv.innerHTML += textToPrint;
+  selectedDiv.innerHTML = textToPrint;
 };
 
-let formVisibility = false; // toggle for the form
+let formVisibility = false; // toggle for the form visibility
 const formShowHide = () => {
   if (formVisibility === false) {
     studentForm.style.visibility = 'visible';
@@ -20,35 +22,66 @@ const formShowHide = () => {
 };
 
 const randomHouse = () => {
-  let house = [
-    "Gryffindor",
-    "Slytherin",
-    "Ravenclaw",
-    "Hufflepuff"
-  ]
+  let house = ["Gryffindor","Slytherin","Ravenclaw","Hufflepuff"]
   let selectedHouse = house[Math.floor(Math.random()*house.length)];
   return selectedHouse;
 };
 
+// sort form function
 const addStudent = () => {
-  let domString = '';
   let selectedHouse = randomHouse();
-  
-  domString += `<div class="card text-center" style="width: 18rem;" id="student-card">`;
-  domString += `  <div class="card-body">`;
-  domString += `    <h2>${studentName.value}</h2>`;
-  domString += `    <p class="card-text">${selectedHouse}</p>`;
-  domString += `    <button class="btn btn-primary">Go somewhere</button>`;
-  domString += `  </div>`;
-  domString += `</div>`;
+  const uniqueId = studentName.value + String(idCounter);
+  const student = {
+    name: studentName.value,
+    house: selectedHouse,
+    id: uniqueId
+  };
+  idCounter++;
+  classroom.unshift(student);
+  classroomBuilder(classroom);
+};
+
+// expel button function
+const expelStudent = (e) => {
+  let newClassroom = [];
+  const exStudent = e.target.id;
+  classroom.forEach((x) => {
+    if(x.id !== exStudent) {
+      newClassroom.push(x);
+    };
+  });
+  classroom = newClassroom;
+  classroomBuilder(classroom);
+};
+
+// builds the cards
+const classroomBuilder = (classroomArray) => {
+  let domString = '';
+  classroomArray.forEach((student) => {
+    domString += `<div class="card text-center" style="width: 18rem;" id="student-card">`;
+    domString += `  <div class="card-body">`;
+    domString += `    <h2>${student.name}</h2>`;
+    domString += `    <p class="card-text">${student.house}</p>`;
+    domString += `    <button class="btn btn-primary" id="${student.id}">Expel</button>`;
+    domString += `  </div>`;
+    domString += `</div>`;
+  });
+
+  console.log(classroom);
 
   printToDom('student-cards', domString);
-;}
+  classroomArray.forEach((student) => {
+    expelEventListeners(student.id);
+  });
+};
+
+const expelEventListeners = (e) => {
+  document.getElementById(e).addEventListener('click', expelStudent);
+}
 
 const init = () => {
   startBtn.addEventListener('click', formShowHide);
   sortBtn.addEventListener('click', addStudent);
-  randomHouse();
 }
 
 init();
