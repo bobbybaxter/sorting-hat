@@ -2,6 +2,7 @@ const startBtn = document.getElementById('start-btn');
 const sortBtn = document.getElementById('sort-btn');
 const studentForm = document.getElementById('student-form');
 const studentName = document.getElementById('student-name');
+const errorMsg = document.getElementById('error-msg');
 let classroom = [];
 let idCounter = 0;
 
@@ -27,8 +28,23 @@ const randomHouse = () => {
   return selectedHouse;
 };
 
+const studentErrorBar = () => {
+  let domString = '';
+  domString += `<div class="alert alert-danger" role="alert">`;
+  domString += `  Please insert a Student name.`;
+  domString += `  <button type="button" class="close" data-dismiss="alert" aria-label="Close">`;
+  domString += `    <span aria-hidden="true">&times;</span>`;
+  domString += `  </button>`;
+  domString += `</div>`;
+  printToDom('error-msg', domString);
+};
+
 // sort form function
 const addStudent = () => {
+  if (studentName.value === '') {
+    console.log(studentForm);
+    studentErrorBar();
+  } else {
   let selectedHouse = randomHouse();
   const uniqueId = studentName.value + String(idCounter);
   const student = {
@@ -36,10 +52,11 @@ const addStudent = () => {
     house: selectedHouse,
     id: uniqueId
   };
-  studentName.value = '';
-  idCounter++;
-  classroom.unshift(student);
-  classroomBuilder(classroom);
+    studentName.value = '';
+    idCounter++;
+    classroom.unshift(student);
+    classroomBuilder(classroom);
+  }
 };
 
 // expel button function
