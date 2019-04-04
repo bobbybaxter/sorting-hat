@@ -91,11 +91,29 @@ const classroomBuilder = (classroomArray) => {
   classroomArray.forEach((student) => {
     expelEventListeners(student.id);
   });
+  // classroom.sort(compareValues(name));
+  console.log(classroom.sort(compare));
 };
 
 const expelEventListeners = (e) => {
   document.getElementById(e).addEventListener('click', expelStudent);
 }
+
+// compare function
+const compare = (a, b) => {
+  // Use toUpperCase() to ignore character casing
+  const nameA = a.name.toUpperCase();
+  const nameB = b.name.toUpperCase();
+
+  let comparison = 0;
+  if (nameA > nameB) {
+    comparison = 1;
+  } else if (nameA < nameB) {
+    comparison = -1;
+  }
+  return comparison;
+};
+
 
 const init = () => {
   startBtn.addEventListener('click', formShowHide);
