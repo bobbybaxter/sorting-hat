@@ -1,6 +1,24 @@
 # Sorting Hat
 One-page locally hosted site to work on writing/working tickets using Github Projects, styling with Bootstrap 4, and manipulating arrays.
 
+## Functionality
+- clicking the "Let's start sorting" button removes the jumbotron and displays the sorting form
+- the sorting form:
+  - displays an error if no name is input
+  - builds cards with the student's name and sorts them into a random house
+  - includes buttons that will alphabetically sort the students by name and by house
+  - can be submitted using the enter key
+  - clears input field upon entry
+- the cards with the white background:
+  - display the student's name and their sorted house
+  - display colors based on the house
+  - include an expel button that will move the student to 'voldemort's army' in the dark background below
+- the cards in 'voldemort's army':
+  - change the house to "Voldemort's Army"
+  - include an "Add" button that will return the student to the normal "classroom"
+  - include a "Remove" button that will remove the student altogether
+  - also sorts by name and *previous* house when the "Sort By Name" and "Sort By House" buttons are clicked
+
 ## Screenshots
 ![image of sorting hat website](https://raw.githubusercontent.com/bobbybaxter/sorting-hat/master/img/sorting-hat-screenshot1.png)
 ![image of sorting hat website](https://raw.githubusercontent.com/bobbybaxter/sorting-hat/master/img/sorting-hat-screenshot2.png)
