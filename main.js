@@ -3,6 +3,7 @@ const sortBtn = document.getElementById('sort-btn');
 const studentForm = document.getElementById('student-form');
 const studentName = document.getElementById('student-name');
 const errorMsg = document.getElementById('error-msg');
+const cardSortBtns = document.getElementsByClassName('sort-btns');
 let classroom = [];
 let idCounter = 0;
 
@@ -78,14 +79,12 @@ const classroomBuilder = (classroomArray) => {
   classroomArray.forEach((student) => {
     domString += `<div class="card text-center border rounded mt-0 mx-3 mb-4" style="width: 15rem;" id="student-card">`;
     domString += `  <div class="card-body d-flex flex-column ${student.house}">`;
-    domString += `    <h2>${student.name}</h2>`;
+    domString += `    <h3>${student.name}</h3>`;
     domString += `    <p class="card-text">${student.house}</p>`;
     domString += `    <button class="btn btn-primary m-auto-top expel-btn" id="${student.id}">Expel</button>`;
     domString += `  </div>`;
     domString += `</div>`;
   });
-
-  console.log(classroom);
 
   printToDom('student-cards', domString);
   classroomArray.forEach((student) => {
@@ -93,13 +92,31 @@ const classroomBuilder = (classroomArray) => {
   });
 };
 
+const cardSorter = (e) => {
+  e.preventDefault();
+  const navId = e.target.id;
+  if (navId === 'sort-by-name') {
+    classroom.sort((a,b) => (a.name > b.name) ? 1: -1);
+  } else if (navId === 'sort-by-house') {
+    classroom.sort((a,b) => (a.house > b.house) ? 1: -1);
+  }
+  classroomBuilder(classroom);
+};
+
 const expelEventListeners = (e) => {
   document.getElementById(e).addEventListener('click', expelStudent);
-}
+};
+
+const sortEventListeners = () => {
+  for (let i = 0; i < cardSortBtns.length; i++) {
+    cardSortBtns[i].addEventListener('click', cardSorter);
+  };
+};
 
 const init = () => {
   startBtn.addEventListener('click', formShowHide);
   sortBtn.addEventListener('click', addStudent);
-}
+  sortEventListeners();
+};
 
 init();

@@ -6,6 +6,10 @@
   margin-top: auto;
 }
 
+.card-body {
+  padding: 5px;
+}
+
 .Gryffindor {
   background-color: rgba(240, 127, 127, 0.2);
   color: #800000;
@@ -30,7 +34,6 @@
   border: 2px solid rgb(114, 96, 18, .5);
 }
 
-.expel-btn {
-  /* background: transparent;
-  color: black; */
+.sort-item {
+  cursor: pointer;
 }
