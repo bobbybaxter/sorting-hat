@@ -5,6 +5,7 @@ const studentName = document.getElementById('student-name');
 const errorMsg = document.getElementById('error-msg');
 const cardSortBtns = document.getElementsByClassName('sort-btns');
 let classroom = [];
+let badStudents = [];
 let idCounter = 0;
 
 const printToDom = (divId, textToPrint) => {
@@ -57,20 +58,22 @@ const addStudent = () => {
     idCounter++;
     classroom.unshift(student);
     classroomBuilder(classroom);
+    badStudentBuilder(badStudents);
   }
 };
 
 // expel button function
 const expelStudent = (e) => {
-  let newClassroom = [];
   const exStudent = e.target.id;
-  classroom.forEach((x) => {
-    if(x.id !== exStudent) {
-      newClassroom.push(x);
+  classroom.forEach((student, index) => {
+    if (student.id === exStudent) {
+      badStudents.push(student);
+      classroom.splice(index, 1);
     };
   });
-  classroom = newClassroom;
   classroomBuilder(classroom);
+  badStudentBuilder(badStudents);
+  console.log(badStudents);
 };
 
 // builds the cards
@@ -85,11 +88,24 @@ const classroomBuilder = (classroomArray) => {
     domString += `  </div>`;
     domString += `</div>`;
   });
-
   printToDom('student-cards', domString);
   classroomArray.forEach((student) => {
     expelEventListeners(student.id);
   });
+};
+
+const badStudentBuilder = (badStudentArray) => {
+  let domString = '';
+  badStudentArray.forEach((badStudent) => {
+    domString += `<div class="card text-center border rounded mt-0 mx-3 mb-4" style="width: 15rem;" id="student-card">`;
+    domString += `  <div class="card-body d-flex flex-column voldy-army">`;
+    domString += `    <h3>${badStudent.name}</h3>`;
+    domString += `    <p class="card-text">${badStudent.house}</p>`;
+    domString += `    <button class="btn btn-primary m-auto-top readmit-btn" id="${badStudent.id}">Add to Class</button>`;
+    domString += `  </div>`;
+    domString += `</div>`;
+  });
+  printToDom('bad-students', domString);
 };
 
 const cardSorter = (e) => {
@@ -101,6 +117,7 @@ const cardSorter = (e) => {
     classroom.sort((a,b) => (a.house > b.house) ? 1: -1);
   }
   classroomBuilder(classroom);
+  badStudentBuilder(badStudents);
 };
 
 const expelEventListeners = (e) => {

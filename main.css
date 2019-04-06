@@ -34,6 +34,12 @@
   border: 2px solid rgb(114, 96, 18, .5);
 }
 
+.voldy-army {
+  background-color: rgba(63, 63, 63, 0.212);
+  color: whitesmoke;
+  border: 2px solid rgba(0, 0, 0, 0.5);
+}
+
 .sort-item {
   cursor: pointer;
 }
