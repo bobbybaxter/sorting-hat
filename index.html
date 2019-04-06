@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="./main.css">
 </head>
 <body>
-    <div class="container jumbotron py-4 mb-0">
+    <div class="container jumbotron py-4 mb-0" id="jumbotron">
         <h1 class="display-4">Welcome to Hoggy Hoggy Warts!</h1>
         <p class="lead">Squashy armchairs dirt on your nose brass scales crush the Sopophorous bean with flat side of silver dagger, releases juice better than cutting. Full moon Whomping Willow three turns should do it lemon drops. Locomotor trunks owl treats that will be 50 points, Mr. Potter. Witch Weekly, he will rise again and he will come for us, headmaster Erumpent horn. Fenrir Grayback horseless carriages ‘zis is a chance many would die for!</p>
         <hr class="my-4">
@@ -23,7 +23,7 @@
         <div class="form-group row justify-content-around align-items-center mt-3 mb-3">
           <label class="col-2 text-right col-3 student-name">Student:</label>
           <input type="text" class="form-control col-5" placeholder="Seamus Finnigan" id="student-name">
-          <button href='#sort-btn' class="btn btn-primary col-2" type="button" id="sort-btn">Sort!</button>
+          <button href='#sort-btn' class="btn btn-primary col-2" type="submit" id="sort-btn">Sort!</button>
         </div>
       </form>
       <div class="sort-btns">
@@ -41,7 +41,7 @@
     
     <div id="student-cards" class="container d-flex flex-row flex-wrap justify-content-center mt-0 pt-0"></div>
 
-    <div id="bad-students" class="container d-flex flex-row flex-wrap justify-content center mt-0 pt-0"></div>
+    <div id="bad-students" class="container flex-row flex-wrap justify-content-center mt-0 bg-dark"></div>
   
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
