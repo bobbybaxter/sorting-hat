@@ -6,6 +6,7 @@ const studentName = document.getElementById('student-name');
 const errorMsg = document.getElementById('error-msg');
 const cardSortBtns = document.getElementsByClassName('sort-btns');
 const badStudentsDiv = document.getElementById('bad-students');
+let formVisibility = false; // toggle for the form visibility
 let classroom = [];
 let badStudents = [];
 let idCounter = 0;
@@ -20,7 +21,6 @@ const printToDom = (divId, textToPrint) => {
   selectedDiv.innerHTML = textToPrint;
 };
 
-let formVisibility = false; // toggle for the form visibility
 const formShowHide = () => {
   if (formVisibility === false) {
     studentForm.style.visibility = 'visible';
@@ -49,7 +49,7 @@ const studentErrorBar = () => {
   printToDom('error-msg', domString);
 };
 
-badStudentBgColor = () => {
+const hideShowBadStudentDiv = () => {
   if (badStudents.length === 0) {
     badStudentsDiv.classList.add('d-none');
     badStudentsDiv.classList.remove('d-flex');
@@ -62,7 +62,6 @@ badStudentBgColor = () => {
 // sort form function
 const addStudent = () => {
   if (studentName.value === '') {
-    console.log(studentForm);
     studentErrorBar();
   } else {
   let selectedHouse = randomHouse();
@@ -82,7 +81,7 @@ const addStudent = () => {
 const pageReload = () => {
   classroomBuilder(classroom);
   badStudentBuilder(badStudents);
-  badStudentBgColor();
+  hideShowBadStudentDiv();
 };
 
 // expel button function
@@ -167,8 +166,7 @@ const cardSorter = (e) => {
     classroom.sort((a,b) => (a.house > b.house) ? 1: -1);
     badStudents.sort((a,b) => (a.house > b.house) ? 1: -1);
   }
-  classroomBuilder(classroom);
-  badStudentBuilder(badStudents);
+  pageReload();
 };
 
 const expelEventListeners = (e) => {
