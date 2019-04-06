@@ -34,6 +34,18 @@
   border: 2px solid rgb(114, 96, 18, .5);
 }
 
+.voldy-army {
+  background-color: rgba(63, 63, 63, 0.212);
+}
+
 .sort-item {
   cursor: pointer;
+}
+
+#bad-students {
+  padding: 15px;
+}
+
+.half-btn {
+  width: 50%;
 }
