@@ -187,10 +187,18 @@ const sortEventListeners = () => {
   };
 };
 
+const enterKeydown = (e) => {
+  if (e.keyCode === 13) {
+    e.preventDefault();
+    addStudent();
+  };
+};
+
 const init = () => {
   onLoad();
   startBtn.addEventListener('click', formShowHide);
   sortBtn.addEventListener('click', addStudent);
+  studentForm.addEventListener('keydown', enterKeydown);
   sortEventListeners();
 };
 
